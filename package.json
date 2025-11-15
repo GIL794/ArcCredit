@@ -1,0 +1,42 @@
+{
+  "name": "arccredit",
+  "version": "1.0.0",
+  "description": "ArcCredit: Programmable Money for SMB Lending",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js --network arc-testnet",
+    "demo": "hardhat run scripts/demo-scenario.js --network arc-testnet"
+  },
+  "keywords": [
+    "arc",
+    "blockchain",
+    "lending",
+    "usdc",
+    "eurc"
+  ],
+  "author": "Your Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "chai": "^4.3.7",
+    "ethers": "^6.0.0",
+    "hardhat": "^2.14.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.6",
+    "@chainlink/contracts": "^1.5.0",
+    "dotenv": "^16.0.3"
+  },
+  "overrides": {
+    "js-yaml": "^4.1.0",
+    "tmp": "^0.2.4",
+    "patch-package": "^8.0.1"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "type": "commonjs"
+}

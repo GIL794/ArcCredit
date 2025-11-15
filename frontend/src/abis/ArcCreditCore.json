@@ -1,0 +1,45 @@
+[
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_collateralAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "_borrowAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "_creditScore", "type": "uint256" },
+      { "internalType": "uint8", "name": "_borrowStablecoin", "type": "uint8" }
+    ],
+    "name": "requestLoanInStablecoin",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_borrower", "type": "address" }
+    ],
+    "name": "getLoanStatus",
+    "outputs": [
+      { "internalType": "uint256", "name": "", "type": "uint256" },
+      { "internalType": "uint256", "name": "", "type": "uint256" },
+      { "internalType": "uint256", "name": "", "type": "uint256" },
+      { "internalType": "uint256", "name": "", "type": "uint256" },
+      { "internalType": "bool", "name": "", "type": "bool" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_borrower", "type": "address" }
+    ],
+    "name": "accrueInterest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "repayLoan",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
