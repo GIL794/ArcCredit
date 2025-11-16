@@ -3,6 +3,18 @@ const { ethers } = require("hardhat");
 require("dotenv").config();
 
 async function main() {
+  // Get network name (defaults to localhost if not specified)
+  const networkName = hre.network.name;
+  console.log(`\n📡 Deploying to network: ${networkName}`);
+  
+  // Warn if deploying to in-memory hardhat network
+  if (networkName === 'hardhat') {
+    console.warn('\n⚠️  WARNING: Deploying to in-memory Hardhat network!');
+    console.warn('   Contracts will be lost when script ends.');
+    console.warn('   For persistent deployment, use: npx hardhat run scripts/deploy.js --network localhost');
+    console.warn('   (Make sure Hardhat node is running: npx hardhat node)\n');
+  }
+  
   const [deployer] = await ethers.getSigners();
   console.log("Deploying with account:", deployer.address);
   
@@ -59,11 +71,28 @@ async function main() {
   };
   
   const fs = require("fs");
+  const path = require("path");
+  
+  // Save to root deployment.json
   fs.writeFileSync(
     "deployment.json",
     JSON.stringify(deploymentAddresses, null, 2)
   );
   console.log("\n✓ Deployment saved to deployment.json");
+  
+  // Also copy to frontend public folder for automatic loading
+  const frontendPublicPath = path.join(__dirname, "..", "arccredit-frontend", "public", "deployment.json");
+  try {
+    fs.writeFileSync(
+      frontendPublicPath,
+      JSON.stringify(deploymentAddresses, null, 2)
+    );
+    console.log("✓ Deployment addresses copied to arccredit-frontend/public/deployment.json");
+    console.log("  (Frontend can now automatically load addresses when wallet connects)");
+  } catch (copyError) {
+    console.warn("⚠️  Could not copy to frontend public folder:", copyError.message);
+    console.warn("   You can manually copy deployment.json to arccredit-frontend/public/");
+  }
   
   // 5. Print summary
   console.log("\n" + "=".repeat(60));
